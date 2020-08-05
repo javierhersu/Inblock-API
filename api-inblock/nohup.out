@@ -1,0 +1,1327 @@
+Error: Unable to access jarfile target/inBLOCK-API-0.0.1-SNAPSHOT.jar
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-01 17:29:16.621  INFO 50489 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 50489 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-01 17:29:16.624  INFO 50489 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-01 17:29:16.711  INFO 50489 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Mon Jun 01 17:29:16 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-01 17:29:18.399  INFO 50489 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-01 17:29:18.438  INFO 50489 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:29:18.440  INFO 50489 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-01 17:29:18.457  INFO 50489 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-01 17:29:18.534  INFO 50489 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:29:18.535  INFO 50489 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1835 ms
+2020-06-01 17:29:18.644  INFO 50489 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-01 17:29:18.648  INFO 50489 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-01 17:29:18.648  INFO 50489 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-01 17:29:18.648  INFO 50489 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-01 17:29:18.648  INFO 50489 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:29)
+	at quorum.App.<init>(App.java:38)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.App.<init>(App.java:42)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Login.<init>(Login.java:31)
+	at quorum.Controller.<init>(Controller.java:28)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:29)
+	at quorum.Controller.<init>(Controller.java:29)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+2020-06-01 17:29:19.345  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Mon Jun 01 17:29:16 UTC 2020]; root of context hierarchy
+2020-06-01 17:29:19.430  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.433  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.434  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-01 17:29:19.436  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.437  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.437  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-01 17:29:19.438  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-01 17:29:19.440  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.442  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.446  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.446  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.447  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.447  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.447  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:29:19.460  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-01 17:29:19.461  INFO 50489 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-01 17:29:19.507  INFO 50489 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:29:19.507  INFO 50489 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:29:19.558  INFO 50489 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:29:19.722  INFO 50489 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-01 17:29:19.908 ERROR 50489 --- [           main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-4443]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-4443]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:255) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552) ~[spring-context-5.0.4.RELEASE.jar!/:5.0.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at quorum.Application.main(Application.java:18) ~[classes!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1021) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalArgumentException: keystore password was incorrect
+	at org.apache.tomcat.util.net.AbstractJsseEndpoint.createSSLContext(AbstractJsseEndpoint.java:116) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractJsseEndpoint.initialiseSsl(AbstractJsseEndpoint.java:87) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:225) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1150) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:591) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1018) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 22 common frames omitted
+Caused by: java.io.IOException: keystore password was incorrect
+	at java.base/sun.security.pkcs12.PKCS12KeyStore.engineLoad(PKCS12KeyStore.java:2108) ~[na:na]
+	at java.base/sun.security.util.KeyStoreDelegator.engineLoad(KeyStoreDelegator.java:243) ~[na:na]
+	at java.base/java.security.KeyStore.load(KeyStore.java:1479) ~[na:na]
+	at org.apache.tomcat.util.net.SSLUtilBase.getStore(SSLUtilBase.java:139) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.SSLHostConfigCertificate.getCertificateKeystore(SSLHostConfigCertificate.java:204) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.jsse.JSSEUtil.getKeyManagers(JSSEUtil.java:184) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractJsseEndpoint.createSSLContext(AbstractJsseEndpoint.java:114) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 27 common frames omitted
+Caused by: java.security.UnrecoverableKeyException: failed to decrypt safe contents entry: javax.crypto.BadPaddingException: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
+	... 34 common frames omitted
+
+2020-06-01 17:29:19.911  INFO 50489 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-06-01 17:29:19.925  INFO 50489 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-01 17:29:19.927 ERROR 50489 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 4443 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 4443, or configure this application to listen on another port.
+
+2020-06-01 17:29:19.928  INFO 50489 --- [           main] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Mon Jun 01 17:29:16 UTC 2020]; root of context hierarchy
+2020-06-01 17:29:19.929  INFO 50489 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-01 17:31:32.568  INFO 50719 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 50719 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-01 17:31:32.571  INFO 50719 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-01 17:31:32.690  INFO 50719 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Mon Jun 01 17:31:32 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-01 17:31:34.503  INFO 50719 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-01 17:31:34.546  INFO 50719 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:31:34.547  INFO 50719 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-01 17:31:34.561  INFO 50719 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-01 17:31:34.631  INFO 50719 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:31:34.632  INFO 50719 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1976 ms
+2020-06-01 17:31:34.765  INFO 50719 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-01 17:31:34.768  INFO 50719 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-01 17:31:34.768  INFO 50719 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-01 17:31:34.768  INFO 50719 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-01 17:31:34.768  INFO 50719 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:29)
+	at quorum.App.<init>(App.java:38)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: database "inblockDB" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.App.<init>(App.java:42)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Login.<init>(Login.java:31)
+	at quorum.Controller.<init>(Controller.java:28)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:29)
+	at quorum.Controller.<init>(Controller.java:29)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+2020-06-01 17:31:35.463  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Mon Jun 01 17:31:32 UTC 2020]; root of context hierarchy
+2020-06-01 17:31:35.526  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.529  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.529  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-01 17:31:35.529  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.530  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-01 17:31:35.530  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.530  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.531  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.531  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.531  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.532  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.532  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-01 17:31:35.533  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.533  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:31:35.538  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-01 17:31:35.539  INFO 50719 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-01 17:31:35.562  INFO 50719 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:31:35.562  INFO 50719 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:31:35.611  INFO 50719 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:31:35.766  INFO 50719 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-01 17:31:35.909 ERROR 50719 --- [           main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-4443]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-4443]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:255) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552) ~[spring-context-5.0.4.RELEASE.jar!/:5.0.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at quorum.Application.main(Application.java:18) ~[classes!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1021) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalArgumentException: keystore password was incorrect
+	at org.apache.tomcat.util.net.AbstractJsseEndpoint.createSSLContext(AbstractJsseEndpoint.java:116) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractJsseEndpoint.initialiseSsl(AbstractJsseEndpoint.java:87) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:225) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1150) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:591) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1018) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 22 common frames omitted
+Caused by: java.io.IOException: keystore password was incorrect
+	at java.base/sun.security.pkcs12.PKCS12KeyStore.engineLoad(PKCS12KeyStore.java:2108) ~[na:na]
+	at java.base/sun.security.util.KeyStoreDelegator.engineLoad(KeyStoreDelegator.java:243) ~[na:na]
+	at java.base/java.security.KeyStore.load(KeyStore.java:1479) ~[na:na]
+	at org.apache.tomcat.util.net.SSLUtilBase.getStore(SSLUtilBase.java:139) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.SSLHostConfigCertificate.getCertificateKeystore(SSLHostConfigCertificate.java:204) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.jsse.JSSEUtil.getKeyManagers(JSSEUtil.java:184) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractJsseEndpoint.createSSLContext(AbstractJsseEndpoint.java:114) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 27 common frames omitted
+Caused by: java.security.UnrecoverableKeyException: failed to decrypt safe contents entry: javax.crypto.BadPaddingException: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
+	... 34 common frames omitted
+
+2020-06-01 17:31:35.915  INFO 50719 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-06-01 17:31:35.935  INFO 50719 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-01 17:31:35.936 ERROR 50719 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 4443 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 4443, or configure this application to listen on another port.
+
+2020-06-01 17:31:35.937  INFO 50719 --- [           main] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Mon Jun 01 17:31:32 UTC 2020]; root of context hierarchy
+2020-06-01 17:31:35.938  INFO 50719 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-01 17:34:10.989  INFO 50909 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 50909 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-01 17:34:10.993  INFO 50909 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-01 17:34:11.077  INFO 50909 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Mon Jun 01 17:34:11 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-01 17:34:12.791  INFO 50909 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-01 17:34:12.825  INFO 50909 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:34:12.827  INFO 50909 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-01 17:34:12.844  INFO 50909 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-01 17:34:12.930  INFO 50909 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:34:12.930  INFO 50909 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1871 ms
+2020-06-01 17:34:13.064  INFO 50909 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-01 17:34:13.067  INFO 50909 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-01 17:34:13.068  INFO 50909 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-01 17:34:13.068  INFO 50909 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-01 17:34:13.068  INFO 50909 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:29)
+	at quorum.App.<init>(App.java:38)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: database "inblockDB" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.App.<init>(App.java:42)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Login.<init>(Login.java:31)
+	at quorum.Controller.<init>(Controller.java:28)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:29)
+	at quorum.Controller.<init>(Controller.java:29)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+2020-06-01 17:34:13.772  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Mon Jun 01 17:34:11 UTC 2020]; root of context hierarchy
+2020-06-01 17:34:13.863  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.865  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.866  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.866  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-01 17:34:13.866  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.867  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.867  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.867  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.868  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-01 17:34:13.868  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.868  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.869  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.869  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-01 17:34:13.870  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:34:13.875  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-01 17:34:13.876  INFO 50909 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-01 17:34:13.901  INFO 50909 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:34:13.901  INFO 50909 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:34:13.928  INFO 50909 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:34:14.097  INFO 50909 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-01 17:34:14.320  INFO 50909 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4443 (https) with context path ''
+2020-06-01 17:34:14.325  INFO 50909 --- [           main] quorum.Application                       : Started Application in 4.035 seconds (JVM running for 4.486)
+2020-06-01 17:37:49.936  INFO 50909 --- [       Thread-2] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Mon Jun 01 17:34:11 UTC 2020]; root of context hierarchy
+2020-06-01 17:37:49.941  INFO 50909 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-01 17:37:57.317  INFO 51251 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 51251 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-01 17:37:57.325  INFO 51251 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-01 17:37:57.392  INFO 51251 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Mon Jun 01 17:37:57 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-01 17:37:59.027  INFO 51251 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-01 17:37:59.055  INFO 51251 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:37:59.055  INFO 51251 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-01 17:37:59.068  INFO 51251 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-01 17:37:59.132  INFO 51251 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:37:59.132  INFO 51251 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1752 ms
+2020-06-01 17:37:59.217  INFO 51251 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-01 17:37:59.221  INFO 51251 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-01 17:37:59.221  INFO 51251 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-01 17:37:59.221  INFO 51251 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-01 17:37:59.221  INFO 51251 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+org.postgresql.util.PSQLException: FATAL: database "inblockDB" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:30)
+	at quorum.App.<init>(App.java:38)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: database "inblockDB" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.App.<init>(App.java:42)
+	at quorum.Controller.<init>(Controller.java:27)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: database "inblockDB" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Login.<init>(Login.java:31)
+	at quorum.Controller.<init>(Controller.java:28)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+org.postgresql.util.PSQLException: FATAL: database "inblockDB" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at quorum.Notification.<init>(Notification.java:30)
+	at quorum.Controller.<init>(Controller.java:29)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1131)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234)
+	at quorum.Application.main(Application.java:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51)
+2020-06-01 17:37:59.853  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Mon Jun 01 17:37:57 UTC 2020]; root of context hierarchy
+2020-06-01 17:37:59.913  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.915  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.916  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-01 17:37:59.916  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-01 17:37:59.917  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.917  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.918  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.918  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-01 17:37:59.918  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.919  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.919  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.919  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.919  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.920  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:37:59.924  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-01 17:37:59.925  INFO 51251 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-01 17:37:59.948  INFO 51251 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:37:59.948  INFO 51251 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:37:59.975  INFO 51251 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:38:00.142  INFO 51251 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-01 17:38:00.359  INFO 51251 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4443 (https) with context path ''
+2020-06-01 17:38:00.365  INFO 51251 --- [           main] quorum.Application                       : Started Application in 3.742 seconds (JVM running for 4.232)
+2020-06-01 17:39:58.628  INFO 51251 --- [       Thread-2] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Mon Jun 01 17:37:57 UTC 2020]; root of context hierarchy
+2020-06-01 17:39:58.631  INFO 51251 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-01 17:40:16.522  INFO 51496 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 51496 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-01 17:40:16.534  INFO 51496 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-01 17:40:16.616  INFO 51496 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57855c9a: startup date [Mon Jun 01 17:40:16 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-01 17:40:18.230  INFO 51496 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-01 17:40:18.256  INFO 51496 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:40:18.256  INFO 51496 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-01 17:40:18.268  INFO 51496 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-01 17:40:18.338  INFO 51496 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:40:18.338  INFO 51496 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1730 ms
+2020-06-01 17:40:18.506  INFO 51496 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-01 17:40:18.510  INFO 51496 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-01 17:40:18.511  INFO 51496 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-01 17:40:18.511  INFO 51496 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-01 17:40:18.511  INFO 51496 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-06-01 17:40:19.229  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57855c9a: startup date [Mon Jun 01 17:40:16 UTC 2020]; root of context hierarchy
+2020-06-01 17:40:19.296  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.299  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.299  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.299  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.300  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-01 17:40:19.300  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.301  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.301  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.301  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.302  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.302  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.302  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-01 17:40:19.303  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-01 17:40:19.303  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-01 17:40:19.308  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-01 17:40:19.309  INFO 51496 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-01 17:40:19.333  INFO 51496 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:40:19.333  INFO 51496 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:40:19.361  INFO 51496 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-01 17:40:19.489  INFO 51496 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-01 17:40:19.658  INFO 51496 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4443 (https) with context path ''
+2020-06-01 17:40:19.667  INFO 51496 --- [           main] quorum.Application                       : Started Application in 3.836 seconds (JVM running for 4.255)
+2020-06-02 08:09:54.805  INFO 51496 --- [       Thread-2] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57855c9a: startup date [Mon Jun 01 17:40:16 UTC 2020]; root of context hierarchy
+2020-06-02 08:09:54.809  INFO 51496 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-02 08:19:36.874  INFO 114939 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 114939 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-02 08:19:36.877  INFO 114939 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-02 08:19:36.921  INFO 114939 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Tue Jun 02 08:19:36 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-02 08:19:38.448  INFO 114939 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-02 08:19:38.472  INFO 114939 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-02 08:19:38.473  INFO 114939 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-02 08:19:38.484  INFO 114939 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-02 08:19:38.555  INFO 114939 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-02 08:19:38.555  INFO 114939 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1640 ms
+2020-06-02 08:19:38.703  INFO 114939 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-02 08:19:38.706  INFO 114939 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-02 08:19:38.707  INFO 114939 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-02 08:19:38.707  INFO 114939 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-02 08:19:38.707  INFO 114939 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-06-02 08:19:39.471  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Tue Jun 02 08:19:36 UTC 2020]; root of context hierarchy
+2020-06-02 08:19:39.547  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.550  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.550  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-02 08:19:39.552  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-02 08:19:39.553  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.553  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.554  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.555  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.556  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.557  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.558  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.558  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.559  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-02 08:19:39.559  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:19:39.570  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-02 08:19:39.570  INFO 114939 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-02 08:19:39.617  INFO 114939 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:19:39.617  INFO 114939 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:19:39.673  INFO 114939 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:19:39.777  INFO 114939 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-02 08:19:39.926  INFO 114939 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4443 (https) with context path ''
+2020-06-02 08:19:39.930  INFO 114939 --- [           main] quorum.Application                       : Started Application in 3.707 seconds (JVM running for 4.218)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-02 08:36:07.013  INFO 116923 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 116923 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-02 08:36:07.018  INFO 116923 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-02 08:36:07.150  INFO 116923 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Tue Jun 02 08:36:07 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-02 08:36:09.520  INFO 116923 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-02 08:36:09.582  INFO 116923 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-02 08:36:09.583  INFO 116923 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-02 08:36:09.629  INFO 116923 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-02 08:36:09.790  INFO 116923 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-02 08:36:09.790  INFO 116923 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2661 ms
+2020-06-02 08:36:10.037  INFO 116923 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-02 08:36:10.044  INFO 116923 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-02 08:36:10.045  INFO 116923 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-02 08:36:10.045  INFO 116923 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-02 08:36:10.045  INFO 116923 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-06-02 08:36:12.440  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Tue Jun 02 08:36:07 UTC 2020]; root of context hierarchy
+2020-06-02 08:36:12.582  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.584  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.585  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.585  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.585  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-02 08:36:12.586  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.586  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-02 08:36:12.586  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.587  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.587  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.592  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.592  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-02 08:36:12.592  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.593  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:36:12.597  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-02 08:36:12.598  INFO 116923 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-02 08:36:12.661  INFO 116923 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:36:12.662  INFO 116923 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:36:12.710  INFO 116923 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:36:12.903  INFO 116923 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-02 08:36:12.962 ERROR 116923 --- [           main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-4443]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-4443]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:255) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552) ~[spring-context-5.0.4.RELEASE.jar!/:5.0.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234) ~[spring-boot-2.0.0.RELEASE.jar!/:2.0.0.RELEASE]
+	at quorum.Application.main(Application.java:18) ~[classes!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) ~[inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1021) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 21 common frames omitted
+Caused by: java.net.BindException: Address already in use
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.bind(Net.java:455) ~[na:na]
+	at java.base/sun.nio.ch.Net.bind(Net.java:447) ~[na:na]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227) ~[na:na]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80) ~[na:na]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1150) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:591) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1018) ~[tomcat-embed-core-8.5.28.jar!/:8.5.28]
+	... 22 common frames omitted
+
+2020-06-02 08:36:12.971  INFO 116923 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-06-02 08:36:13.027  INFO 116923 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-02 08:36:13.028 ERROR 116923 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 4443 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 4443, or configure this application to listen on another port.
+
+2020-06-02 08:36:13.029  INFO 116923 --- [           main] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3224f60b: startup date [Tue Jun 02 08:36:07 UTC 2020]; root of context hierarchy
+2020-06-02 08:36:13.037  INFO 116923 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2020-06-02 08:36:46.759  INFO 114939 --- [nio-4443-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2020-06-02 08:36:46.760  INFO 114939 --- [nio-4443-exec-5] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2020-06-02 08:36:46.771  INFO 114939 --- [nio-4443-exec-5] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 11 ms
+2020-06-02 08:37:20.347  INFO 114939 --- [       Thread-2] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6321e813: startup date [Tue Jun 02 08:19:36 UTC 2020]; root of context hierarchy
+2020-06-02 08:37:20.355  INFO 114939 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2020-06-02 08:41:25.698  INFO 117491 --- [           main] quorum.Application                       : Starting Application v0.0.1-SNAPSHOT on inBlock-Web-2 with PID 117491 (/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar started by adminweb2 in /home/adminweb2/develop/inblock-demo/api-inblock)
+2020-06-02 08:41:25.705  INFO 117491 --- [           main] quorum.Application                       : No active profile set, falling back to default profiles: default
+2020-06-02 08:41:25.836  INFO 117491 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57855c9a: startup date [Tue Jun 02 08:41:25 UTC 2020]; root of context hierarchy
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/home/adminweb2/develop/inblock-demo/api-inblock/target/inBLOCK-DEVELOP-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-5.0.4.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-06-02 08:41:28.751  INFO 117491 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4443 (https)
+2020-06-02 08:41:28.816  INFO 117491 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-02 08:41:28.818  INFO 117491 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2020-06-02 08:41:28.848  INFO 117491 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-06-02 08:41:29.000  INFO 117491 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-02 08:41:29.000  INFO 117491 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3190 ms
+2020-06-02 08:41:29.251  INFO 117491 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-06-02 08:41:29.255  INFO 117491 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-06-02 08:41:29.255  INFO 117491 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-06-02 08:41:29.256  INFO 117491 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-06-02 08:41:29.256  INFO 117491 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-06-02 08:41:30.591  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57855c9a: startup date [Tue Jun 02 08:41:25 UTC 2020]; root of context hierarchy
+2020-06-02 08:41:30.738  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/check],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.check(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.740  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/notifications],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.741  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.login(java.lang.String)
+2020-06-02 08:41:30.742  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/init]}" onto public void quorum.Controller.greeting()
+2020-06-02 08:41:30.746  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/upload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoice(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.746  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/uploadAEAT],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.uploadInvoiceAEAT(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.747  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoices(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.747  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/invoices/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getInvoice(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+2020-06-02 08:41:30.749  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/autocomplete],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getAutocomplete(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.749  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/discount],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.discount(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.755  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/dashboard],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getDashboard(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.755  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/not-number],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.getNumNotifications(java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.756  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/readNotif],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.markRead(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.757  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api-inblock/v1/del-notification],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> quorum.Controller.delNoti(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2020-06-02 08:41:30.764  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-06-02 08:41:30.765  INFO 117491 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-06-02 08:41:30.869  INFO 117491 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:41:30.870  INFO 117491 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:41:30.958  INFO 117491 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-06-02 08:41:31.187  INFO 117491 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-06-02 08:41:31.434  INFO 117491 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4443 (https) with context path ''
+2020-06-02 08:41:31.454  INFO 117491 --- [           main] quorum.Application                       : Started Application in 6.795 seconds (JVM running for 7.75)
