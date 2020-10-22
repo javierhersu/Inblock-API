@@ -1,7 +1,7 @@
 package quorum;
 
 public class Constants {
-	public static final String GROUP_ID = "Jtw7BdxqbUgc/hqKigE7IZj5DeFN8UdhAVomRfJujbQ=";
+	public static final String GROUP_ID = "/04loj4H1HZNCnqalbIHEcNxQdk3a/IZ3K+fuMmLY4A=";
 	
 	public static final String PRIVATE_KEY_1 = "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63";
 	public static final String PRIVATE_KEY_2 = "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3";
@@ -27,7 +27,7 @@ public class Constants {
 	public static final String HOST_6 = "http://51.137.102.41:20010";
 	public static final String HOST_7 = "http://51.137.102.41:20012";
 	
-	public static final String CONTRACT_ADDRESS = "0x147e30f60205b79648f3588d362bc43fb97abc8d";
+	public static final String CONTRACT_ADDRESS = "0xf2c9323b9dc2e557f1e1074bf7682b750d5cd2fa";
 	
 	public static final String SQL_USER = "postgres";
 	public static final String SQL_PASSWORD = "EYPostgreSQL2020???";
