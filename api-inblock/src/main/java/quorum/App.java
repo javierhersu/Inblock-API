@@ -72,7 +72,6 @@ public class App
 		Date today = new Date();
 		String hashStr = "";
 		boolean duplicate = false;
-
    		try {
    			JSONObject buyer = new JSONObject();
 			buyer.put("buyerPersonTypeCode", buyerPersonTypeCode);
@@ -85,7 +84,6 @@ public class App
 			buyer.put("buyerProvince", buyerProvince);
 			buyer.put("buyerCountryCode", buyerCountryCode);
 			json.put("buyer", buyer);
-
 			JSONObject seller = new JSONObject();
 			seller.put("sellerPersonTypeCode", sellerPersonTypeCode);
 			seller.put("sellerResidenceTypeCode", sellerResidenceTypeCode);
@@ -97,7 +95,6 @@ public class App
 			seller.put("sellerProvince", sellerProvince);
 			seller.put("sellerCountryCode", sellerCountryCode);
 			json.put("seller", seller);
-
 			JSONObject invoice = new JSONObject();
 			invoice.put("schemaVersion", schemaVersion);
 			invoice.put("modality", modality);
@@ -134,20 +131,17 @@ public class App
 
    			JSONObject blockchain = new JSONObject();
    			blockchain.put("uploadingTimestamp", sdf.format(today));
-
 			//Crear Blockchain ID
 	        Random rand = new Random(); 
 			int num = rand.nextInt(1000);
 			String digits = batchIdentifier.replaceAll("[^0-9.]", "");
 			String digits2 = digits.replaceAll("-", "");
 			inBlockID = digits2+today.getTime()+num;
-
 			blockchain.put("inBlockID", inBlockID);
 			blockchain.put("validInvoice", true);
 			blockchain.put("existAEAT", false);
 			blockchain.put("discountAccount", "");
 			blockchain.put("account", _cuenta);
-
 			//Crear HASH
 			JSONObject hash = new JSONObject();
 			hash.put("amount", totalAmountInvoices);
@@ -239,7 +233,6 @@ public class App
 		Date today = new Date();
 		String hashStr = "";
 		boolean duplicate = false;
-
    		try {
    			JSONObject buyer = new JSONObject();
 			buyer.put("buyerPersonTypeCode", buyerPersonTypeCode);
@@ -252,7 +245,6 @@ public class App
 			buyer.put("buyerProvince", buyerProvince);
 			buyer.put("buyerCountryCode", buyerCountryCode);
 			json.put("buyer", buyer);
-
 			JSONObject seller = new JSONObject();
 			seller.put("sellerPersonTypeCode", sellerPersonTypeCode);
 			seller.put("sellerResidenceTypeCode", sellerResidenceTypeCode);
@@ -264,7 +256,6 @@ public class App
 			seller.put("sellerProvince", sellerProvince);
 			seller.put("sellerCountryCode", sellerCountryCode);
 			json.put("seller", seller);
-
 			JSONObject invoice = new JSONObject();
 			invoice.put("schemaVersion", schemaVersion);
 			invoice.put("modality", modality);
@@ -303,14 +294,12 @@ public class App
    			blockchain.put("uploadingTimestamp", sdf.format(today));
 			blockchain.put("discountStatus", status);
 			blockchain.put("discountAccount", "");
-
 			//Crear Blockchain ID
 	        Random rand = new Random(); 
 			int num = rand.nextInt(1000);
 			String digits = batchIdentifier.replaceAll("[^0-9.]", "");
 			String digits2 = digits.replaceAll("-", "");
 			inBlockID = digits2+today.getTime()+num;
-
 			blockchain.put("inBlockID", inBlockID);
 			blockchain.put("validInvoice", true);
 			blockchain.put("existAEAT", true);
@@ -596,7 +585,6 @@ public class App
 				discountStatus = false;
 			else if(i > 1)
 				discountStatus = true;
-
 			existenceStatus = tuple.getValue2();
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -1081,13 +1069,11 @@ public class App
 			res.put("sabadellAmount", formatter.format(sabadellAmount).replace(",", "."));
 			res.put("caixaAmount", formatter.format(caixaAmount).replace(",", "."));
 			res.put("bankiaAmount", formatter.format(bankiaAmount).replace(",", "."));
-
 			res.put("santanderInvoice", String.valueOf(santanderInvoice).replace(",", "."));
 			res.put("bbvaInvoice", String.valueOf(bbvaInvoice).replace(",", "."));
 			res.put("sabadellInvoice", String.valueOf(sabadellInvoice).replace(",", "."));
 			res.put("caixaInvoice", String.valueOf(caixaInvoice).replace(",", "."));
 			res.put("bankiaInvoice", String.valueOf(bankiaInvoice).replace(",", "."));
-
 			res.put("santanderFact", formatter.format(santanderFact).replace(",", "."));
 			res.put("bbvaFact", formatter.format(bbvaFact).replace(",", "."));
 			res.put("sabadellFact", formatter.format(sabadellFact).replace(",", "."));
