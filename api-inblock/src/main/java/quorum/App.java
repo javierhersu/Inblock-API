@@ -5,58 +5,53 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.postgresql.util.PGobject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.web3j.tuples.generated.Tuple2;
 
-import java.util.Date;    
- 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+
+import java.util.Date;
+import java.util.Iterator;    
+
 
 public class App 
 {
-    Connection connection = null;
-    Notification not;
+	//Connection connection = null;
+	MongoDatabase database;
+	Notification not;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
-    public App() {        
-        not = new Notification();
-        
-        try {	 
-    		Class.forName(Constants.SQL_DRIVER);
-    	    connection = DriverManager.getConnection(Constants.SQL_URL, Constants.SQL_USER, Constants.SQL_PASSWORD);	    
-    	} catch (SQLException e) {
-    		e.printStackTrace();
-    	}catch (ClassNotFoundException ex) {
-    	    System.out.println("Error al registrar el driver de PostgreSQL: " + ex);
-    	}
-    }
 
-     
-    /**
-     * Method to include a new invoice from a bank
-     * @param _cuenta
-     * @param _codigoIdentificacionProveedor
-     * @param _codigoIdentificacionCliente
-     * @param _numFactura
-     * @return
-     */
-    public String addInvoice(Blockchain _blockchain, String _cuenta, String schemaVersion, String modality,
+	public App(MongoDatabase db) {        
+		not = new Notification(db);
+
+		database = db;
+	}
+
+
+	/**
+	 * Method to include a new invoice from a bank
+	 * @param _cuenta
+	 * @param _codigoIdentificacionProveedor
+	 * @param _codigoIdentificacionCliente
+	 * @param _numFactura
+	 * @return
+	 */
+	 public String addInvoice(Blockchain _blockchain, String _cuenta, String schemaVersion, String modality,
     	    String invoiceIssuerType, String batchIdentifier, String invoicesCount, String totalAmountInvoices,
     	    String totalAmountOutstanding, String totalAmountExecutable, String headerInvoiceCurrencyCode,
     	    String sellerPersonTypeCode, String sellerResidenceTypeCode, String sellerTaxIdentificationNumber,
@@ -77,7 +72,7 @@ public class App
 		Date today = new Date();
 		String hashStr = "";
 		boolean duplicate = false;
-		    	
+
    		try {
    			JSONObject buyer = new JSONObject();
 			buyer.put("buyerPersonTypeCode", buyerPersonTypeCode);
@@ -90,7 +85,7 @@ public class App
 			buyer.put("buyerProvince", buyerProvince);
 			buyer.put("buyerCountryCode", buyerCountryCode);
 			json.put("buyer", buyer);
-			
+
 			JSONObject seller = new JSONObject();
 			seller.put("sellerPersonTypeCode", sellerPersonTypeCode);
 			seller.put("sellerResidenceTypeCode", sellerResidenceTypeCode);
@@ -102,7 +97,7 @@ public class App
 			seller.put("sellerProvince", sellerProvince);
 			seller.put("sellerCountryCode", sellerCountryCode);
 			json.put("seller", seller);
-			
+
 			JSONObject invoice = new JSONObject();
 			invoice.put("schemaVersion", schemaVersion);
 			invoice.put("modality", modality);
@@ -139,20 +134,20 @@ public class App
 
    			JSONObject blockchain = new JSONObject();
    			blockchain.put("uploadingTimestamp", sdf.format(today));
-			
+
 			//Crear Blockchain ID
 	        Random rand = new Random(); 
 			int num = rand.nextInt(1000);
 			String digits = batchIdentifier.replaceAll("[^0-9.]", "");
 			String digits2 = digits.replaceAll("-", "");
 			inBlockID = digits2+today.getTime()+num;
-			
+
 			blockchain.put("inBlockID", inBlockID);
 			blockchain.put("validInvoice", true);
 			blockchain.put("existAEAT", false);
 			blockchain.put("discountAccount", "");
 			blockchain.put("account", _cuenta);
-			
+
 			//Crear HASH
 			JSONObject hash = new JSONObject();
 			hash.put("amount", totalAmountInvoices);
@@ -160,8 +155,8 @@ public class App
 			hash.put("seller", sellerTaxIdentificationNumber);
 			hash.put("buyer", buyerTaxIdentificationNumber);
 			hashStr = makeHash(hash.toString());
-			
-			duplicate = getHash(connection, "inblock", hashStr);
+
+			duplicate = getHash("inblock", hashStr);
    			if(duplicate == false)
    				blockchain.put("discountStatus", status);
    			else
@@ -171,11 +166,11 @@ public class App
 			blockchain.put("discountCheckExecuted", false);
 			blockchain.put("existenceCheckExecuted", false);
 			blockchain.put("existenceStatus", false);
-			
+
 			blockchain.put("hash", hashStr);
-			
+
 			blockchain.put("duplicate", duplicate);
-			
+
 			JSONArray array = new JSONArray();
 			JSONObject steps = new JSONObject();
 			steps.put("id", 1);
@@ -208,20 +203,20 @@ public class App
    		}catch(JSONException e) {
    			e.printStackTrace();
    		}
-   		
-   		insert(connection, _cuenta.toLowerCase(), totalAmountInvoices, issueDate, transactionDate, sdf.format(today), inBlockID, hashStr, _cuenta, true, duplicate, status, false, false, false, false, json.toString());
-   		insert(connection, "inblock", totalAmountInvoices, issueDate, transactionDate, sdf.format(today), inBlockID, hashStr, _cuenta, true, duplicate, status, false, false, false, false, json.toString());
-		   
-		boolean existAEAT = getExistAEAT(connection, hashStr);
-   		if(!duplicate & !existAEAT)
-			insert(connection, "aeat", totalAmountInvoices, issueDate, transactionDate, sdf.format(today), inBlockID, hashStr, _cuenta, true, duplicate, status, false, false, false, false, json.toString());
 
-   		
+   		insert(_cuenta.toLowerCase(), json.toString());
+   		insert("inblock", json.toString());
+
+		boolean existAEAT = getExistAEAT(hashStr);
+   		if(!duplicate & !existAEAT)
+			insert("aeat", json.toString());
+
+
     	return inBlockID;
     }
-    
-    
-    
+
+
+
     public String addInvoiceAEAT(Blockchain _blockchain, String _cuenta, String schemaVersion, String modality,
     	    String invoiceIssuerType, String batchIdentifier, String invoicesCount, String totalAmountInvoices,
     	    String totalAmountOutstanding, String totalAmountExecutable, String headerInvoiceCurrencyCode,
@@ -244,7 +239,7 @@ public class App
 		Date today = new Date();
 		String hashStr = "";
 		boolean duplicate = false;
-		    	
+
    		try {
    			JSONObject buyer = new JSONObject();
 			buyer.put("buyerPersonTypeCode", buyerPersonTypeCode);
@@ -257,7 +252,7 @@ public class App
 			buyer.put("buyerProvince", buyerProvince);
 			buyer.put("buyerCountryCode", buyerCountryCode);
 			json.put("buyer", buyer);
-			
+
 			JSONObject seller = new JSONObject();
 			seller.put("sellerPersonTypeCode", sellerPersonTypeCode);
 			seller.put("sellerResidenceTypeCode", sellerResidenceTypeCode);
@@ -269,7 +264,7 @@ public class App
 			seller.put("sellerProvince", sellerProvince);
 			seller.put("sellerCountryCode", sellerCountryCode);
 			json.put("seller", seller);
-			
+
 			JSONObject invoice = new JSONObject();
 			invoice.put("schemaVersion", schemaVersion);
 			invoice.put("modality", modality);
@@ -308,14 +303,14 @@ public class App
    			blockchain.put("uploadingTimestamp", sdf.format(today));
 			blockchain.put("discountStatus", status);
 			blockchain.put("discountAccount", "");
-			
+
 			//Crear Blockchain ID
 	        Random rand = new Random(); 
 			int num = rand.nextInt(1000);
 			String digits = batchIdentifier.replaceAll("[^0-9.]", "");
 			String digits2 = digits.replaceAll("-", "");
 			inBlockID = digits2+today.getTime()+num;
-			
+
 			blockchain.put("inBlockID", inBlockID);
 			blockchain.put("validInvoice", true);
 			blockchain.put("existAEAT", true);
@@ -327,19 +322,19 @@ public class App
 			hash.put("seller", sellerTaxIdentificationNumber);
 			hash.put("buyer", buyerTaxIdentificationNumber);
 			hashStr = makeHash(hash.toString());
-			
-			duplicate = getHash(connection, "inblock", hashStr);
+
+			duplicate = getHash("inblock", hashStr);
 			blockchain.put("doubledInvoice", duplicate);
 			blockchain.put("entityDiscountStatus", false);
 			blockchain.put("discountCheckExecuted", false);
 			blockchain.put("existenceCheckExecuted", false);
 			blockchain.put("existenceStatus", false);
-			
+
 			blockchain.put("hash", hashStr);
-			
+
 			blockchain.put("account", _cuenta);
 			blockchain.put("duplicate", duplicate);
-			
+
 			JSONArray array = new JSONArray();
 			JSONObject steps = new JSONObject();
 			steps.put("id", 1);
@@ -360,35 +355,35 @@ public class App
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-   		
-   		if(!getHash(connection, "aeat", hashStr)) {
-   			insert(connection, _cuenta.toLowerCase(), totalAmountInvoices, issueDate, transactionDate, sdf.format(today), inBlockID, hashStr, _cuenta, true, duplicate, status, false, false, false, false, json.toString());
+
+   		if(!getHash("aeat", hashStr)) {
+   			insert(_cuenta.toLowerCase(), json.toString());
    		}else {
-   			String blockID = getID(connection, "aeat", hashStr);
-   			deleteAEAT(connection, "aeat", blockID);
-   			insert(connection, _cuenta.toLowerCase(), totalAmountInvoices, issueDate, transactionDate, sdf.format(today), inBlockID, hashStr, _cuenta, true, duplicate, status, false, false, false, false, json.toString());
+   			String blockID = getID("aeat", hashStr);
+   			deleteAEAT("aeat", blockID);
+   			insert(_cuenta.toLowerCase(), json.toString());
    		}
-   		
+
     	return json.toString();
     }
-    
-  
-    
-    /**
-     * Method to obtain all the invoices
-     * @param _cuenta
-     * @return
-     */
-    public ResponseEntity<String> getAllInvoices(String _cuenta) {
-    
-    	if(_cuenta.contentEquals("AEF"))
-    		_cuenta="inBlock";
-   		
-   		JSONArray array = getAll(connection, _cuenta);
-   		
-   		JSONArray newJsonArray = new JSONArray();
+
+
+
+	/**
+	 * Method to obtain all the invoices
+	 * @param _cuenta
+	 * @return
+	 */
+	public ResponseEntity<String> getAllInvoices(String _cuenta) {
+
+		if(_cuenta.contentEquals("AEF"))
+			_cuenta="inBlock";
+
+		JSONArray array = getAll(_cuenta);
+
+		JSONArray newJsonArray = new JSONArray();
 		for (int i = array.length()-1; i>=0; i--) {
-		    try {
+			try {
 				newJsonArray.put(array.get(i));
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -396,61 +391,62 @@ public class App
 		}
 		HttpHeaders header = new HttpHeaders();
 		header.set("Content-Type", "application/json");
-   		return new ResponseEntity<String>(newJsonArray.toString(), header, HttpStatus.OK);
-    }
-    
-    /**
-     * Method to obtain all the invoices
-     * @param _cuenta
-     * @return
-     */
-    public ResponseEntity<String> getInvoice(String _cuenta, String _id) {
-    
-    	if(_cuenta.contentEquals("AEF"))
-    		_cuenta="inBlock";
-   		
-    	JSONObject json = getInvoiceByID(connection, _cuenta.toLowerCase(), _id);
-		
+		return new ResponseEntity<String>(newJsonArray.toString(), header, HttpStatus.OK);
+	}
+
+	/**
+	 * Method to obtain all the invoices
+	 * @param _cuenta
+	 * @return
+	 */
+	public ResponseEntity<String> getInvoice(String _cuenta, String _id) {
+
+		if(_cuenta.contentEquals("AEF"))
+			_cuenta="inBlock";
+
+		JSONObject json = getInvoiceByID(_cuenta.toLowerCase(), _id);
+
 		HttpHeaders header = new HttpHeaders();
 		header.set("Content-Type", "application/json");
-   		return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
-    }
-    
-    /**
-     * Method to obtain all the invoices
-     * @param _cuenta
-     * @return
-     */
-    public ResponseEntity<String> getInvoiceUploaded(String _cuenta, JSONArray array) {
-    
-    	if(_cuenta.contentEquals("AEF"))
-    		_cuenta="inBlock";
-   		
-    	JSONArray jsonArr = new JSONArray();
-    	for(int i=0; i<array.length(); i++) {
-        	JSONObject json;
+		return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
+	}
+
+	/**
+	 * Method to obtain all the invoices
+	 * @param _cuenta
+	 * @return
+	 */
+	public ResponseEntity<String> getInvoiceUploaded(String _cuenta, JSONArray array) {
+
+		if(_cuenta.contentEquals("AEF"))
+			_cuenta="inBlock";
+
+		JSONArray jsonArr = new JSONArray();
+		for(int i=0; i<array.length(); i++) {
+			JSONObject json;
 			try {
-				json = getInvoiceByID(connection, _cuenta.toLowerCase(), array.getString(i));
-	        	jsonArr.put(json);
+				json = getInvoiceByID(_cuenta.toLowerCase(), array.getString(i));
+				jsonArr.put(json);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-    	}
-		
+		}
+
 		HttpHeaders header = new HttpHeaders();
 		header.set("Content-Type", "application/json");
-   		return new ResponseEntity<String>(jsonArr.toString(), header, HttpStatus.OK);
-    }
-    
-    /**
-     * Method to obtain all the invoices
-     * @param _cuenta
-     * @return
-     */
-    public String discount(Blockchain _blockchain, String _cuenta, String _id) {
-    
-    	Blockchain blockApp = _blockchain;
-		JSONObject json = addNewStep(connection, _cuenta.toLowerCase(), _id, "Discount");
+		return new ResponseEntity<String>(jsonArr.toString(), header, HttpStatus.OK);
+	}
+
+	/**
+	 * Method to obtain all the invoices
+	 * @param _cuenta
+	 * @return
+	 */
+	public String discount(Blockchain _blockchain, String _cuenta, String _id) {
+
+		Blockchain blockApp = _blockchain;
+		JSONObject json = addNewStep(_cuenta.toLowerCase(), _id, "Discount");
+		json.remove("_id");
 		String hash = null;
 		try {
 			hash = json.getJSONObject("blockchain").getString("hash");
@@ -463,29 +459,30 @@ public class App
 		} catch (JSONException e2) {
 			e2.printStackTrace();
 		}
+		
 		if(!checked) {
 			try {
 				json.getJSONObject("blockchain").put("discountStatus", true);
-	   			json.getJSONObject("blockchain").put("discountCheckExecuted", true);
+				json.getJSONObject("blockchain").put("discountCheckExecuted", true);
 				json.getJSONObject("blockchain").put("discountAccount", _cuenta);
-	   			System.out.println("Blockchain discount 2: "+hash);
-	   			blockApp.setDiscount(hash);
+				System.out.println("Blockchain discount 2: "+hash);
+				blockApp.setDiscount(hash);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-   			
-   			updateDiscount(connection, _cuenta.toLowerCase(), json.toString(), _id);	   		
-			updateDiscount(connection, "inblock", json.toString(), _id);
-   			//updateAEAT(connection, hash);
-   			
-	   		return "";
+
+			updateDiscount(_cuenta.toLowerCase(), json.toString(), _id);	   		
+			updateDiscount("inblock", json.toString(), _id);
+			//updateAEAT(connection, hash);
+
+			return "";
 		}
-		
-   		if(getHash(connection, "inblock", hash)) {
-   			//Añadir notificacion de que ya existe esta factura.
-   			BigInteger big = null;
+
+		if(getHash("inblock", hash)) {
+			//Añadir notificacion de que ya existe esta factura.
+			BigInteger big = null;
 			try {
 				big = blockApp.getDiscount(hash);
 			} catch (InterruptedException e1) {
@@ -493,102 +490,105 @@ public class App
 			} catch (ExecutionException e1) {
 				e1.printStackTrace();
 			}
-   			int discStatus = Integer.valueOf(String.valueOf(big));
-   			
-   			if(discStatus == 1) {   				
-   				try {
-   					json.getJSONObject("blockchain").put("discountStatus", true);
-   		   			json.getJSONObject("blockchain").put("discountCheckExecuted", true);
-   		   			json.getJSONObject("blockchain").put("discountAccount", _cuenta);
+			int discStatus = Integer.valueOf(String.valueOf(big));
 
-   		   		System.out.println("Blockchain discount: "+hash);
-   		   			blockApp.setDiscount(hash);
-   				} catch (JSONException e) {
-   					e.printStackTrace();
-   				} catch (Exception e) {
-   					e.printStackTrace();
-   				}
-   	   			
-   	   			updateDiscount(connection, _cuenta.toLowerCase(), json.toString(), _id);	   		
-				updateDiscount(connection, "inblock", json.toString(), _id);
-   	   			updateAEAT(connection, hash);
-		   
+			if(discStatus == 1) {   				
+				try {
+					json.getJSONObject("blockchain").put("discountStatus", true);
+					json.getJSONObject("blockchain").put("discountCheckExecuted", true);
+					json.getJSONObject("blockchain").put("discountAccount", _cuenta);
+
+					System.out.println("Blockchain discount: "+hash);
+					blockApp.setDiscount(hash);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				updateDiscount(_cuenta.toLowerCase(), json.toString(), _id);	   		
+				updateDiscount("inblock", json.toString(), _id);
+				updateAEAT(hash);
+
 				return "";
-   			}else {
-   				System.out.println("No se puede descontar, ya descontada");
-				String _cuentaDescuento = getDiscountAccount(connection, _cuenta, hash);
-   				try {
+			}else {
+				System.out.println("No se puede descontar, ya descontada");
+				String _cuentaDescuento = getDiscountAccount(_cuenta, hash);
+				try {
 					json.getJSONObject("blockchain").put("discountAccount", _cuentaDescuento);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-   				
-   				updateDiscount(connection, _cuenta.toLowerCase(), json.toString(), _id);
-   	   			updateDiscount(connection, "inblock", json.toString(), _id);
-   	   			updateAEAT(connection, hash);
-   	   				  
+
+				updateDiscount(_cuenta.toLowerCase(), json.toString(), _id);
+				updateDiscount("inblock", json.toString(), _id);
+				updateAEAT(hash);
+
 				return _id;
-   			}
-   			//Si no esta descontada descontar
-   			//   ¿¿¿Si esta descontada actualiza aunque no lo modifique??
-   				//Añadir notificacion de que existe esta factura y ya esta descontada
-   		}else {
-   			try {
+			}
+			//Si no esta descontada descontar
+			//   ¿¿¿Si esta descontada actualiza aunque no lo modifique??
+			//Añadir notificacion de que existe esta factura y ya esta descontada
+		}else {
+			try {
 				json.getJSONObject("blockchain").put("discountStatus", true);
-	   			json.getJSONObject("blockchain").put("discountCheckExecuted", true);
+				json.getJSONObject("blockchain").put("discountCheckExecuted", true);
 				json.getJSONObject("blockchain").put("discountAccount", _cuenta);
 
-	   			System.out.println("Blockchain discount 2: "+hash);
-	   			blockApp.setDiscount(hash);
+				System.out.println("Blockchain discount 2: "+hash);
+				blockApp.setDiscount(hash);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-   			
-   			updateDiscount(connection, _cuenta.toLowerCase(), json.toString(), _id);	   		
-	   		updateDiscount(connection, "inblock", json.toString(), _id);
-			updateAEAT(connection, hash);
-			   
-	   		return "";
-   		}
-    }
-    
-    /**
-     * Method to obtain all the invoices
-     * @param _cuenta
-     * @return
-     */
-    public String check(Blockchain _blockchain, String _cuenta, String _id) {
-    
-    	Blockchain blockApp = _blockchain;
-		JSONObject res = addNewStep(connection, _cuenta.toLowerCase(), _id, "Check");
+
+			updateDiscount(_cuenta.toLowerCase(), json.toString(), _id);	   		
+			updateDiscount("inblock", json.toString(), _id);
+			updateAEAT(hash);
+
+			return "";
+		}
+	}
+
+	/**
+	 * Method to obtain all the invoices
+	 * @param _cuenta
+	 * @return
+	 */
+	public String check(Blockchain _blockchain, String _cuenta, String _id) {
+
+		Blockchain blockApp = _blockchain;
+		JSONObject res = addNewStep(_cuenta.toLowerCase(), _id, "Check");
+		System.out.println(_id);
 
 		String hash = null;
-    	try {
+		try {
 			hash = res.getJSONObject("blockchain").getString("hash");
 		} catch (JSONException e1) {
 			e1.printStackTrace();
 		}	
-    	
-    	boolean duplicate = false;
-    	String cuenta = "";
+		System.out.println(hash);
+
+
+		boolean duplicate = false;
+		String cuenta = "";
 		try {
 			duplicate = res.getJSONObject("blockchain").getBoolean("doubledInvoice");
 			cuenta = res.getJSONObject("blockchain").getString("account");
 		} catch (JSONException e2) {
 			e2.printStackTrace();
 		}
-    	
-    	if(duplicate) {
-    		not.addNotification1(_cuenta, _id, getCuenta(connection, "inblock", hash));
-			not.addNotification1(cuenta, getID(connection, cuenta, hash), getCuenta(connection, cuenta, hash));
-			not.addNotification1("inblock", _id, getCuenta(connection, "inblock", hash));
-    	}
-    	
-    	boolean discountStatus = false;
-    	boolean existenceStatus = false;
-    	try {
+
+		if(duplicate) {
+			//not.addNotification1(_cuenta, _id, getCuenta("inblock", hash));
+			//not.addNotification1(cuenta, getID(cuenta, hash), getCuenta(cuenta, hash));
+			//not.addNotification1("inblock", _id, getCuenta("inblock", hash));
+		}
+
+		boolean discountStatus = false;
+		boolean existenceStatus = false;
+		try {
 			Tuple2<BigInteger, Boolean> tuple = blockApp.getAll(hash);
 			System.out.println("Blockchain add: "+tuple);
 			int i = Integer.valueOf(String.valueOf(tuple.getValue1()));
@@ -596,465 +596,347 @@ public class App
 				discountStatus = false;
 			else if(i > 1)
 				discountStatus = true;
-			
+
 			existenceStatus = tuple.getValue2();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
-    	   			   
+
+
 		try {
 			res.getJSONObject("blockchain").put("discountStatus", discountStatus);
-	   		res.getJSONObject("blockchain").put("discountCheckExecuted", true);
+			res.getJSONObject("blockchain").put("discountCheckExecuted", true);
 			res.getJSONObject("blockchain").put("existenceStatus", existenceStatus);
 			res.getJSONObject("blockchain").put("existenceCheckExecuted", true);
-			String _cuentaDescuento = getDiscountAccount(connection, _cuenta, hash);
-   			res.getJSONObject("blockchain").put("discountAccount", _cuentaDescuento);
+			String _cuentaDescuento = getDiscountAccount(_cuenta, hash);
+			res.getJSONObject("blockchain").put("discountAccount", _cuentaDescuento);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		updateCheck(connection, _cuenta.toLowerCase(), existenceStatus, res.toString(), _id);
-		updateCheck(connection, "inblock", existenceStatus, res.toString(), _id);
-		updateDiscount(connection, _cuenta.toLowerCase(), res.toString(), _id);
-		updateDiscount(connection, "inblock", res.toString(), _id);
+		System.out.println(res.toString());
+		
+		res.remove("_id");
+		updateCheck(_cuenta.toLowerCase(), existenceStatus, _id);
+		updateCheck("inblock", existenceStatus, _id);
+		updateDiscount(_cuenta.toLowerCase(), res.toString(), _id);
+		updateDiscount("inblock", res.toString(), _id);
 
-   		return "";
-    }
-    
-    public ResponseEntity<String> dashboard(String _cuenta) {
+		return "";
+	}
+
+	public ResponseEntity<String> dashboard(String _cuenta) {
 		JSONObject res = null;
 
-    	if(_cuenta.contentEquals("AEF"))
-    		_cuenta="inBlock";
-   		
-    	res = getDashboard(connection, _cuenta.toLowerCase());
+		if(_cuenta.contentEquals("AEF"))
+			_cuenta="inBlock";
+
+		res = getDashboard(_cuenta.toLowerCase());
 		HttpHeaders header = new HttpHeaders();
 		header.set("Content-Type", "application/json");
-   		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
-    }
-    
-    public ResponseEntity<String> getAutocomplete(String _cuenta) {
+		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
+	}
+
+
+	public ResponseEntity<String> getAutocomplete(String _cuenta) {
 		JSONArray res = null;
 
-    	if(_cuenta.contentEquals("AEF"))
-    		_cuenta="inBlock";
-   		
-    	res = autocomplete(connection, _cuenta.toLowerCase());
-   		
+		if(_cuenta.contentEquals("AEF"))
+			_cuenta="inBlock";
+
+		res = autocomplete(_cuenta.toLowerCase());
+
 		HttpHeaders header = new HttpHeaders();
 		header.set("Content-Type", "application/json");
-   		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
-    }
-    
-    /************************** CREATE HASH *******************************/
-    
-    public String makeHash(String input)
-    {
-        String generatedPassword = null;
-        try {
-            // Create MessageDigest instance for MD5
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-            //Add password bytes to digest
-            md.update(input.getBytes());
-            //Get the hash's bytes 
-            byte[] bytes = md.digest();
-            //This bytes[] has bytes in decimal format;
-            //Convert it to hexadecimal format
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            //Get complete hashed password in hex format
-            generatedPassword = sb.toString();
-        } 
-        catch (NoSuchAlgorithmException e) 
-        {
-            e.printStackTrace();
-        }
-        //System.out.println(generatedPassword);
-                
-        return "0x"+generatedPassword;
-    }
-    
-    
-    /******************** SQL METHODS ***********************************************/
-    
-    public void insert(Connection conn, String cuenta, String amount, String issueDate, String transactionDate,
-    		String uploadingTimestamp, String inBlockID, String hash, String account, boolean validInvoice,
-    		boolean doubledInvoice, boolean discountStatus, boolean entityDiscountStatus,
-    		boolean discountCheckExecuted, boolean existenceCheckExecuted, boolean existenceStatus,
-    		String jsonString) {
-		String SQL_INSERT = "INSERT INTO "+ cuenta +" (totalAmountInvoices, issueDate, "
-				+ "transactionDate, uploadingTimestamp, inBlockID, hash, account, "
-				+ "validInvoice, doubledInvoice, discountStatus, entityDiscountStatus, "
-				+ "discountCheckExecuted, existenceCheckExecuted, existenceStatus, json)"
-				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setString(1, amount);
-			pstmt.setString(2, issueDate);
-			pstmt.setString(3, transactionDate);
-			pstmt.setString(4, uploadingTimestamp);
-			pstmt.setString(5, inBlockID);
-			pstmt.setString(6, hash);
-			pstmt.setString(7, account);
-			pstmt.setBoolean(8, validInvoice);
-			pstmt.setBoolean(9, doubledInvoice);
-			pstmt.setBoolean(10, discountStatus);
-			pstmt.setBoolean(11, entityDiscountStatus);
-			pstmt.setBoolean(12, discountCheckExecuted);
-			pstmt.setBoolean(13, existenceCheckExecuted);
-			pstmt.setBoolean(14, existenceStatus);
-			PGobject jsonObject = new PGobject();
-			 jsonObject.setType("json");
-			 jsonObject.setValue(jsonString);
-			pstmt.setObject(15, jsonObject);
-			
-			pstmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
 	}
-    
-    public void updateDiscount(Connection conn, String cuenta, String jsonString, String inblockID) {
-		String SQL_INSERT = "UPDATE "+ cuenta +" SET discountStatus=?, discountCheckExecuted=?, json=? WHERE inBlockID='"+inblockID+"'";
-		
+
+	/************************** CREATE HASH *******************************/
+
+	public String makeHash(String input)
+	{
+		String generatedPassword = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setBoolean(1, true);
-			pstmt.setBoolean(2, true);
-			
-			PGobject jsonObject = new PGobject();
-			 jsonObject.setType("json");
-			 jsonObject.setValue(jsonString);
-			pstmt.setObject(3, jsonObject);
-			
-			pstmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-    
-	public void updateAEAT(Connection conn, String hash) {
-    	String SQL_SELECT = "SELECT * FROM aeat WHERE hash='"+hash+"'";
-	    String SQL_UPDATE = "UPDATE aeat SET json=? WHERE hash='"+hash+"'";
-		try { 
-			Class.forName(Constants.SQL_DRIVER);
-		    Connection connection = null;
-		    connection = DriverManager.getConnection(Constants.SQL_URL, Constants.SQL_USER, Constants.SQL_PASSWORD);
-		    //boolean valid = connection.isValid(50000);
-            //System.out.println(valid ? "TEST OK" : "TEST FAIL");
-            
-			Statement st;
-
-			st = connection.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			JSONObject json = null;
-			while (rs.next()) {
-				JSONObject res = new JSONObject(rs.getObject("json"));
-				try {
-					json = new JSONObject(res.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+			// Create MessageDigest instance for MD5
+			MessageDigest md = MessageDigest.getInstance("SHA1");
+			//Add password bytes to digest
+			md.update(input.getBytes());
+			//Get the hash's bytes 
+			byte[] bytes = md.digest();
+			//This bytes[] has bytes in decimal format;
+			//Convert it to hexadecimal format
+			StringBuilder sb = new StringBuilder();
+			for(int i=0; i< bytes.length ;i++)
+			{
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
 			}
-			st.close();
-			
+			//Get complete hashed password in hex format
+			generatedPassword = sb.toString();
+		} 
+		catch (NoSuchAlgorithmException e) 
+		{
+			e.printStackTrace();
+		}
+		//System.out.println(generatedPassword);
+
+		return "0x"+generatedPassword;
+	}
+
+
+	/******************** SQL METHODS ***********************************************/
+
+	 public void insert(String cuenta, String jsonString) {
+		 
+		 MongoCollection<Document> collection = database.getCollection(cuenta);
+		 
+		 collection.insertOne(Document.parse(jsonString));
+	}
+
+	public void updateDiscount(String cuenta, String jsonString, String inblockID) {
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Iterator<Document> it = collection.find().iterator();
+
+		Object query = BasicDBObject.parse(jsonString);
+		BasicDBObject setQuery = new BasicDBObject();
+		setQuery.append("$set", query);
+		collection.findOneAndUpdate(Filters.eq("blockchain.inBlockID", inblockID), setQuery);
+
+	}
+
+
+	public void updateAEAT(String hash) {
+
+		MongoCollection<Document> collection = database.getCollection("aeat");
+		Iterator<Document> it = collection.find().iterator();
+
+		BasicDBObject query = new BasicDBObject();
+		query.append("blockchain.discountStatus", true);
+		BasicDBObject setQuery = new BasicDBObject();
+		setQuery.append("$set", query);
+		collection.findOneAndUpdate(Filters.eq("blockchain.hash", hash), setQuery);
+
+	}
+
+
+	public boolean getExistAEAT(String hash) {
+		MongoCollection<Document> collection = database.getCollection("aeat");
+		int count = (int) collection.count(Filters.eq("blockchain.hash", hash));
+
+		boolean res = false;
+		if(count > 0)
+			res = true;
+
+		return res;
+	}
+
+
+	public void updateCheck(String cuenta, boolean existenceStatus, String inblockID) {
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document object = collection.find(Filters.eq("blockchain.inBlockID", inblockID)).first();
+		JSONObject o = null;
+		try {
+			o = new JSONObject(object.toJson());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		BasicDBObject query = new BasicDBObject();
+		query.append("blockchain.existenceStatus", existenceStatus);
+		query.append("blockchain.existenceCheckExecuted", true);
+		BasicDBObject update = new BasicDBObject();
+		update.append("$set", query);
+		collection.updateOne(Filters.eq("blockchain.inBlockID", inblockID), update);
+
+	}
+
+
+	public void deleteAEAT(String cuenta, String id) {
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		collection.findOneAndDelete(Filters.eq("blockchain.inBlockID", id));
+	}
+
+	public JSONArray getAll(String cuenta) {
+
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Iterator<Document> it = collection.find().iterator();
+		JSONArray array = new JSONArray();
+		while(it.hasNext()) {
+			Document d = it.next();
+			JSONObject obj = null;
 			try {
-				json.getJSONObject("blockchain").put("discountStatus", true);
+				obj = new JSONObject(d.toJson());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+			array.put(obj);
 
-			PreparedStatement pstmt = connection.prepareStatement(SQL_UPDATE, Statement.RETURN_GENERATED_KEYS);
-			
-			PGobject jsonObject = new PGobject();
-			 jsonObject.setType("json");
-			 jsonObject.setValue(json.toString());
-			pstmt.setObject(1, jsonObject);
-			
-			pstmt.execute();
-	    
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}catch (ClassNotFoundException ex) {
-		    System.out.println("Error al registrar el driver de PostgreSQL: " + ex);
 		}
-    }
-    
-    public boolean getExistAEAT(Connection conn, String hash) {
-    	String SQL_SELECT = "SELECT * FROM aeat WHERE hash='"+hash+"'";
-    	boolean res = false;
-		try { 
-			Class.forName(Constants.SQL_DRIVER);
-		    Connection connection = null;
-		    connection = DriverManager.getConnection(Constants.SQL_URL, Constants.SQL_USER, Constants.SQL_PASSWORD);
-		    //boolean valid = connection.isValid(50000);
-            //System.out.println(valid ? "TEST OK" : "TEST FAIL");
-            
-			Statement st;
 
-			st = connection.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("json"));
-				if(json != null)
-					res = true;
-			}
-			st.close();
-	    
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}catch (ClassNotFoundException ex) {
-		    System.out.println("Error al registrar el driver de PostgreSQL: " + ex);
-		}
-		
-		return res;
-    }
-    
-	public void updateCheck(Connection conn, String cuenta, boolean existenceStatus, String jsonString, String inblockID) {
-		String SQL_INSERT = "UPDATE "+ cuenta +" SET existenceStatus=?, existenceCheckExecuted=?, json=? WHERE inBlockID='"+inblockID+"'";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			//System.out.println(inblockID+": "+existenceStatus);
-			pstmt.setBoolean(1, existenceStatus);
-			pstmt.setBoolean(2, true);
-			
-			PGobject jsonObject = new PGobject();
-			 jsonObject.setType("json");
-			 jsonObject.setValue(jsonString);
-			pstmt.setObject(3, jsonObject);
-			
-			pstmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-    
-    public void deleteAEAT(Connection conn, String cuenta, String id) {
-		String SQL_INSERT = "DELETE FROM "+ cuenta +" WHERE inBlockID='"+id+"'";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			//System.out.println(inblockID+": "+existenceStatus);
-			
-			pstmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-    
-    public JSONArray getAll(Connection conn, String cuenta) {
-		String SQL_SELECT = "SELECT json FROM "+cuenta;
-		Statement st;
-		JSONArray array = new JSONArray();
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				//System.out.println(rs.getObject("json"));
-				JSONObject json = new JSONObject(rs.getObject("json"));
-				JSONObject res = null;
-				try {
-					res = new JSONObject(json.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				array.put(res);
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		return array;
 	}
-    
-    public boolean getCheckStatus(Connection conn, String hash) {
-		String SQL_SELECT = "SELECT hash FROM aeat WHERE hash='"+hash+"'";
-		Statement st;
+
+
+	public boolean getCheckStatus(String hash) {
+		MongoCollection<Document> collection = database.getCollection("aeat");
+		int cont = (int) collection.count(Filters.eq("blockchain.hash", hash));
+
 		boolean exists = false;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("hash") != null)
-					exists = true;
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		if(cont > 0)
+			exists = true;
+
 		return exists;
 	}
-    
-    public boolean getHash(Connection conn, String cuenta, String hash) {
-		String SQL_SELECT = "SELECT hash FROM "+cuenta+" WHERE hash='"+hash+"'";
-		Statement st;
+
+
+	public boolean getHash(String cuenta, String hash) {
+
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		int count = (int) collection.count(Filters.eq("blockchain.hash", hash));
+
+
 		boolean exists = false;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("hash") != null)
-					exists = true;
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		if(count > 0)
+			exists = true;
+
 		return exists;
 	}
-    
-    public String getHashStr(Connection conn, String cuenta, String inblockID) {
-    	String SQL_SELECT = "SELECT hash FROM "+cuenta+" WHERE inBlockID='"+inblockID+"'";
-		Statement st;
-		String hash = "";
+
+
+	public String getHashStr(String cuenta, String inblockID) {
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document object = collection.find(Filters.eq("blockchain.inBlockID", inblockID)).first();
+		JSONObject o = null;
 		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("hash") != null)
-					hash = rs.getString("hash");
-			}
-			st.close();
-		} catch (SQLException e) {
+			o = new JSONObject(object.toJson());
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+
+		String hash = null;
+		try {
+			hash = o.getJSONObject("blockchain").getString("hash");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		return hash;
 	}
-    
-    public String getCuenta(Connection conn, String cuenta, String hash) {
-		String SQL_SELECT = "SELECT account FROM "+cuenta+" WHERE hash='"+hash+"'";
-		Statement st;
-		String account = "";
+
+
+	public String getCuenta(String cuenta, String hash) {
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document object = collection.find(Filters.eq("blockchain.hash", hash)).first();
+		JSONObject o = null;
 		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("account") != null)
-					account = rs.getString("account");
-			}
-			st.close();
-		} catch (SQLException e) {
+			o = new JSONObject(object.toJson());
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+
+		String account = null;
+		try {
+			account = o.getJSONObject("blockchain").getString("account");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		return account;
 	}
-    
-	public String getDiscountAccount(Connection conn, String _cuenta, String hash) {
-    	String SQL_SELECT = "SELECT * FROM "+ _cuenta +" WHERE hash='"+hash+"'";
-		Statement st;
+
+	public String getDiscountAccount(String _cuenta, String hash) {
+
 		String disAccount = "";
+		MongoCollection<Document> collection = database.getCollection(_cuenta);
+		Document object = collection.find(Filters.eq("blockchain.hash", hash)).first();
+		JSONObject o = null;
 		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("json"));
-				try {
-					JSONObject res = new JSONObject(json.getString("value"));
-					String account = res.getJSONObject("blockchain").getString("discountAccount");
-					//System.out.println(disAccount);
-					if(!account.contentEquals("")) {
-						disAccount = account; 
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			st.close();
-		} catch (SQLException e) {
+			o = new JSONObject(object.toJson());
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		String account = null;
+		try {
+			account = o.getJSONObject("blockchain").getString("discountAccount");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		if(!account.contentEquals("")) {
+			disAccount = account; 
+		}
+
 		return disAccount;
-    }
-	
-	public String getID(Connection conn, String cuenta, String hash) {
-		String SQL_SELECT = "SELECT inblockid FROM "+cuenta+" WHERE hash='"+hash+"'";
-		Statement st;
-		String account = "";
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("inblockid") != null)
-					account = rs.getString("inblockid");
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return account;
 	}
-    
-    public JSONObject getInvoiceByID(Connection conn, String cuenta, String inBlockID) {
-		String SQL_SELECT = "SELECT json FROM "+cuenta+" WHERE inBlockID='"+inBlockID+"'";
-		Statement st;
+
+
+	public String getID(String cuenta, String hash) {
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document object = collection.find(Filters.eq("blockchain.hash", hash)).first();
 		JSONObject res = null;
 		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				//System.out.println(rs.getObject("json"));
-				JSONObject json = new JSONObject(rs.getObject("json"));
-				try {
-					res = new JSONObject(json.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			st.close();
-		} catch (SQLException e) {
+			res = new JSONObject(object.toJson());
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+
+		String account = "";
+
+		try {
+			account = res.getJSONObject("blockchain").getString("inBlockID");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return account;
+	}
+
+
+	public JSONObject getInvoiceByID(String cuenta, String inBlockID) {
+
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document object = collection.find(Filters.eq("blockchain.inBlockID", inBlockID)).first();
+		JSONObject res = null;
+		try {
+			res = new JSONObject(object.toJson());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		return res;
 	}
-    
-    public boolean getDuplicated(Connection conn, String cuenta, String inBlockID) {
-		String SQL_SELECT = "SELECT doubledinvoice FROM "+cuenta+" WHERE inBlockID='"+inBlockID+"'";
-		Statement st;
-		boolean duplicate = false;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				//System.out.println(rs.getObject("json"));
-				duplicate = rs.getBoolean("doubledinvoice");
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return duplicate;
-	}
-    
-    public JSONObject addNewStep(Connection conn, String cuenta, String inBlockID, String step) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String SQL_SELECT = "SELECT json FROM "+cuenta+" WHERE inBlockID='"+inBlockID+"'";
-		Statement st;
+
+
+	public boolean getDuplicated(String cuenta, String inBlockID) {
+
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document object = collection.find(Filters.eq("blockchain.inBlockID", inBlockID)).first();
 		JSONObject res = null;
 		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("json"));
-				try {
-					res = new JSONObject(json.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			st.close();
-		} catch (SQLException e) {
+			res = new JSONObject(object.toJson());
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
+
+		boolean duplicate = false;
+		try {
+			duplicate = res.getJSONObject("blockchain").getBoolean("duplicate");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return duplicate;
+	}
+
+
+	public JSONObject addNewStep(String cuenta, String inBlockID, String step) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Document doc = collection.find(Filters.eq("blockchain.inBlockID", inBlockID)).first();
+		JSONObject res = null;
+		try {
+			res = new JSONObject(doc.toJson());
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
+
 		try {
 			JSONArray steps = res.getJSONArray("steps");
 			String timestamp = sdf.format(new Date());
@@ -1065,55 +947,53 @@ public class App
 			jStep.put("step", step);
 
 			steps.put(jStep);
-			
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}		
-		
+
 		return res;
 	}
-    
-    public JSONArray autocomplete(Connection conn, String cuenta) {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String SQL_SELECT = "SELECT json FROM "+cuenta;
-		Statement st;
-		JSONArray res = new JSONArray();
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			int i = 1;
-			while (rs.next()) {
-				JSONObject json2 = new JSONObject();
-				JSONObject json = new JSONObject(rs.getObject("json"));
 
-				try {
-					JSONObject result = new JSONObject(json.getString("value"));
-
-					String inblockID = result.getJSONObject("blockchain").getString("inBlockID");
-					String amount = result.getJSONObject("invoice").getString("totalAmountInvoices");
-					String invoiceNumber = result.getJSONObject("invoice").getString("invoiceNumber");
-					json2.put("id", inblockID);
-					String name = inblockID + "("+invoiceNumber+" | "+amount+" €)";
-					json2.put("name", name);
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				i++;
-				res.put(json2);
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return res;
-	}
-    
-    public static JSONObject getDashboard(Connection conn, String cuenta) {
+	public JSONArray autocomplete(String cuenta) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String SQL_SELECT = "SELECT json FROM "+cuenta;
-		Statement st;
+
+		JSONArray res = new JSONArray();
+
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+		Iterator<Document> cursor = collection.find().iterator();
+		while(cursor.hasNext()) {
+			Document object = cursor.next();
+			try {
+				JSONObject result = new JSONObject(object.toJson());
+				JSONObject json2 = new JSONObject();
+
+				String inblockID;
+
+				inblockID = result.getJSONObject("blockchain").getString("inBlockID");
+
+				String amount = result.getJSONObject("invoice").getString("totalAmountInvoices");
+				String invoiceNumber = result.getJSONObject("invoice").getString("invoiceNumber");
+				json2.put("id", inblockID);
+				String name = inblockID + "("+invoiceNumber+" | "+amount+" €)";
+				json2.put("name", name);
+
+				res.put(json2);
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}	
+		}
+
+		return res;
+	}
+
+
+	public JSONObject getDashboard(String cuenta) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		MongoCollection<Document> collection = database.getCollection(cuenta);
+
 		double santanderAmount = 0.00;
 		double bbvaAmount = 0.00;
 		double sabadellAmount = 0.00;
@@ -1131,67 +1011,68 @@ public class App
 		double sabadellFact = 0.00;
 		double caixaFact = 0.00;
 		double bankiaFact = 0.00;
-		
+
 		JSONObject res = new JSONObject();
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("json"));
+		Iterator<Document> it= collection.find().iterator();
 
-				try {
-					JSONObject result = new JSONObject(json.getString("value"));
-					String account = result.getJSONObject("blockchain").getString("account");
-					String amountStr = result.getJSONObject("invoice").getString("totalAmountInvoices");
-					double amount = Double.valueOf(amountStr);
-					double fact = 0.00;
-					if(amount < 5000) {
-						fact = 0.03;
-					}else if(amount >= 5000 && amount < 10000) {
-						fact = 0.20;
-					}else if(amount >= 10000 && amount < 50000) {
-						fact = 0.80;
-					}else if(amount >= 50000 && amount < 100000) {
-						fact = 2.00;
-					}else if(amount >= 100000 && amount < 500000) {
-						fact = 8.00;
-					}else if(amount >= 500000 && amount < 1000000) {
-						fact = 20.00;
-					}else {
-						fact = 50.00;
-					}
-					
-					if(account.contentEquals("Santander")) {
-						santanderAmount += amount;
-						santanderFact += fact;
-						santanderInvoice++;
-					}else if(account.contentEquals("BBVA")) {
-						bbvaAmount += amount;
-						bbvaFact += fact;
-						bbvaInvoice++;
-					}else if(account.contentEquals("Bankia")) {
-						bankiaAmount += amount;
-						bankiaFact += fact;
-						bankiaInvoice++;
-					}else if(account.contentEquals("Caixabank")) {
-						caixaAmount += amount;
-						caixaFact += fact;
-						caixaInvoice++;
-					}else if(account.contentEquals("Sabadell")) {
-						sabadellAmount += amount;
-						sabadellFact += fact;
-						sabadellInvoice++;
-					}
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+		while (it.hasNext()) {
+			Document d = it.next();
+			JSONObject json = null;
+			try {
+				json = new JSONObject(d.toJson());
+			} catch (JSONException e1) {
+				e1.printStackTrace();
 			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+
+			try {
+				String account = json.getJSONObject("blockchain").getString("account");
+				String amountStr = json.getJSONObject("invoice").getString("totalAmountInvoices");
+				double amount = Double.valueOf(amountStr);
+				double fact = 0.00;
+				if(amount < 5000) {
+					fact = 0.03;
+				}else if(amount >= 5000 && amount < 10000) {
+					fact = 0.20;
+				}else if(amount >= 10000 && amount < 50000) {
+					fact = 0.80;
+				}else if(amount >= 50000 && amount < 100000) {
+					fact = 2.00;
+				}else if(amount >= 100000 && amount < 500000) {
+					fact = 8.00;
+				}else if(amount >= 500000 && amount < 1000000) {
+					fact = 20.00;
+				}else {
+					fact = 50.00;
+				}
+
+				if(account.contentEquals("Santander")) {
+					santanderAmount += amount;
+					santanderFact += fact;
+					santanderInvoice++;
+				}else if(account.contentEquals("BBVA")) {
+					bbvaAmount += amount;
+					bbvaFact += fact;
+					bbvaInvoice++;
+				}else if(account.contentEquals("Bankia")) {
+					bankiaAmount += amount;
+					bankiaFact += fact;
+					bankiaInvoice++;
+				}else if(account.contentEquals("Caixabank")) {
+					caixaAmount += amount;
+					caixaFact += fact;
+					caixaInvoice++;
+				}else if(account.contentEquals("Sabadell")) {
+					sabadellAmount += amount;
+					sabadellFact += fact;
+					sabadellInvoice++;
+				}
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
-		
+
+
 		try {
 			NumberFormat formatter = new DecimalFormat("0.00");
 
@@ -1200,13 +1081,13 @@ public class App
 			res.put("sabadellAmount", formatter.format(sabadellAmount).replace(",", "."));
 			res.put("caixaAmount", formatter.format(caixaAmount).replace(",", "."));
 			res.put("bankiaAmount", formatter.format(bankiaAmount).replace(",", "."));
-			
+
 			res.put("santanderInvoice", String.valueOf(santanderInvoice).replace(",", "."));
 			res.put("bbvaInvoice", String.valueOf(bbvaInvoice).replace(",", "."));
 			res.put("sabadellInvoice", String.valueOf(sabadellInvoice).replace(",", "."));
 			res.put("caixaInvoice", String.valueOf(caixaInvoice).replace(",", "."));
 			res.put("bankiaInvoice", String.valueOf(bankiaInvoice).replace(",", "."));
-			
+
 			res.put("santanderFact", formatter.format(santanderFact).replace(",", "."));
 			res.put("bbvaFact", formatter.format(bbvaFact).replace(",", "."));
 			res.put("sabadellFact", formatter.format(sabadellFact).replace(",", "."));
@@ -1215,7 +1096,8 @@ public class App
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 		return res;
 	}
+
 }

@@ -1,13 +1,9 @@
 package quorum;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.bson.Document;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
@@ -18,30 +14,26 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
 public class Login {
-    Connection connection;
+
+	MongoDatabase database;
+
     HttpHeaders header = new HttpHeaders();
 	
-    public Login() {
-    	header.set("Content-Type", "application/json");
-
-        try {	 
-    		Class.forName(Constants.SQL_DRIVER);
-    	    connection = DriverManager.getConnection(Constants.SQL_URL, Constants.SQL_USER, Constants.SQL_PASSWORD);	    
-    	} catch (SQLException e) {
-    		e.printStackTrace();
-    	}catch (ClassNotFoundException ex) {
-    	    System.out.println("Error al registrar el driver de PostgreSQL: " + ex);
-    	}
-        
+    public Login(MongoDatabase db) {
+		header.set("Content-Type", "application/json");
+		database = db;
     }
     
     public ResponseEntity<String> login(String user, String password) {
     	String username = null;
     	String pass = null;
     	
-    	if(!userExist(connection, user)) {
+    	if(!userExist(user)) {
     		JSONObject json = new JSONObject();
     		JSONObject error = new JSONObject();
     		try {
@@ -57,12 +49,11 @@ public class Login {
     		return new ResponseEntity<String>(json.toString(), header, HttpStatus.NOT_FOUND);
     	}
     	
-		username = getUser(connection, user);
-	    pass = getPassword(connection, user);
-		
+		username = getUser(user);
+	    pass = getPassword(user);
     	
     	JSONObject json = new JSONObject();
-    	System.out.println(username + " -- "+ pass);
+
     	if(pass.contentEquals(password)) {
     		String token = generateJWTToken(username, pass);
 	    	try {
@@ -176,8 +167,8 @@ public class Login {
         DecodedJWT decodedJWT = verifier.verify(jwtToken);
         String username = null;
         String pass = null;
-    	username = getUser(connection, decodedJWT.getClaim("user").asString());
-    	pass = getPassword(connection, decodedJWT.getClaim("user").asString());
+    	username = getUser(decodedJWT.getClaim("user").asString());
+    	pass = getPassword(decodedJWT.getClaim("user").asString());
        
         if(decodedJWT.getClaim("password").asString().contentEquals(pass))
         	return decodedJWT.getClaim("user").asString();
@@ -186,59 +177,32 @@ public class Login {
     }
     
     /***************** DB METHODS ******************************/
-    
-    public boolean userExist(Connection conn, String user) {
-		String SQL_SELECT = "SELECT username FROM users WHERE username='"+user+"'";
-		Statement st;
+	
+	public boolean userExist(String user){
 		boolean res = false;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				System.out.println(rs.getString("username"));
-				if(rs.getString("username") != null)
-					res = true;
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return res;
-	}
-    
-    public String getUser(Connection conn, String user) {
-		String SQL_SELECT = "SELECT username FROM users WHERE username='"+user+"'";
-		Statement st;
-		String res = "";
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("username") != null)
-					res = rs.getString("username");
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		System.out.println();
+		MongoCollection<Document> collection = database.getCollection("users");
+		int count = (int) collection.count();
+
+		if(count > 0)
+			res = true;
+		
 		return res;
 	}
 	
-	public String getPassword(Connection conn, String user) {
-		String SQL_SELECT = "SELECT password FROM users WHERE username='"+user+"'";
-		Statement st;
-		String res = "";
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				if(rs.getString("password") != null)
-					res = rs.getString("password");
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return res;
-	}
+    public String getUser(String user) {
+
+    	MongoCollection<Document> collection = database.getCollection("users");
+		Document object = collection.find(Filters.eq("user", user)).first();
+		
+		return object.get("user").toString();
+    }
+    
+    public String getPassword(String user) {
+
+    	MongoCollection<Document> collection = database.getCollection("users");
+		Document object = collection.find(Filters.eq("user", user)).first();
+		
+		return object.get("password").toString();
+    }
 }

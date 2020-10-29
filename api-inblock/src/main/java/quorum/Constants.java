@@ -1,7 +1,7 @@
 package quorum;
 
 public class Constants {
-	public static final String GROUP_ID = "/04loj4H1HZNCnqalbIHEcNxQdk3a/IZ3K+fuMmLY4A=";
+	public static final String GROUP_ID = "Tko/hHji9FdK5pw9gW5QVekEeNyEZu8q0zt54j94SXc=";
 	
 	public static final String PRIVATE_KEY_1 = "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63";
 	public static final String PRIVATE_KEY_2 = "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3";
@@ -27,12 +27,15 @@ public class Constants {
 	public static final String HOST_6 = "http://51.137.102.41:20010";
 	public static final String HOST_7 = "http://51.137.102.41:20012";
 	
-	public static final String CONTRACT_ADDRESS = "0xf2c9323b9dc2e557f1e1074bf7682b750d5cd2fa";
+	public static final String CONTRACT_ADDRESS = "0xab500e3a705a401bde40a5697f376ceb53106246";
 	
 	public static final String SQL_USER = "postgres";
 	public static final String SQL_PASSWORD = "EYPostgreSQL2020???";
 	public static final String SQL_URL = "jdbc:postgresql://localhost:5432/inblockDB";
 	public static final String SQL_DRIVER = "org.postgresql.Driver";
+	
+	public static final String MONGO_URL = "mongodb://104.40.220.137:27017";
+	public static final String MONGO_DB = "inblockDB";
 	
 /********************* GET KEYS & HOSTS *************************************************/
     

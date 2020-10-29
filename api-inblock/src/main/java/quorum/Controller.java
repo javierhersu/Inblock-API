@@ -4,6 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
+
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,9 +33,12 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @RestController
 public class Controller {
     
-	private App app = new App();
-	private Login login = new Login();
-	private Notification not = new Notification();
+	MongoClientURI connectionString = new MongoClientURI(Constants.MONGO_URL);
+    MongoClient mongoClient  = new MongoClient(connectionString);
+    private MongoDatabase db = mongoClient.getDatabase(Constants.MONGO_DB);
+	private App app = new App(db);
+	private Login login = new Login(db);
+	private Notification not = new Notification(db);
 	private Constants constants = new Constants();
 
 	Logger LOGGER = Logger.getLogger(Controller.class.getName());
@@ -37,9 +46,10 @@ public class Controller {
 	@CrossOrigin(origins = "*")
     @RequestMapping("/init")
     public void greeting() {
-        app = new App();
+        app = new App(db);
     }
 	
+	//MONGO
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/login", method=RequestMethod.POST)
     public ResponseEntity<String> login(@RequestBody String a){
@@ -55,6 +65,7 @@ public class Controller {
     	return res;
     }
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/upload", method=RequestMethod.POST)
     public ResponseEntity<String> uploadInvoice(@RequestBody String a,
@@ -153,7 +164,7 @@ public class Controller {
     		    String transactionDate = json.getString("transactionDate");
     		    boolean status = json.getBoolean("status");
     		    
-    		    String inblockID = app.addInvoice(blockchain, _cuenta, schemaVersion, modality,
+    		    String inblockID = app.addInvoice(blockchain, _cuenta.toLowerCase(), schemaVersion, modality,
     		    	    invoiceIssuerType, batchIdentifier, invoicesCount, totalAmountInvoices,
     		    	    totalAmountOutstanding, totalAmountExecutable, headerInvoiceCurrencyCode,
     		    	    sellerPersonTypeCode, sellerResidenceTypeCode, sellerTaxIdentificationNumber,
@@ -171,7 +182,7 @@ public class Controller {
     		    
     		    inblockIDs.add(inblockID);
     		}
-    		not.addNotification2(_cuenta, array.length(), _cuenta, 0);
+    		not.addNotification2(_cuenta.toLowerCase(), array.length(), _cuenta, 0);
 			//res = login.login(json.getString("username"), json.getString("password"));
 		} catch (JSONException e) {
 			System.out.println(e);
@@ -187,6 +198,7 @@ public class Controller {
 		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
     }
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/uploadAEAT", method=RequestMethod.POST)
     public ResponseEntity<String> uploadInvoiceAEAT(@RequestBody String a,
@@ -282,7 +294,7 @@ public class Controller {
     		    String transactionDate = json.getString("transactionDate");
     		    boolean status = json.getBoolean("status");
     		    
-    		    app.addInvoiceAEAT(blockchain, _cuenta, schemaVersion, modality,
+    		    app.addInvoiceAEAT(blockchain, _cuenta.toLowerCase(), schemaVersion, modality,
     		    	    invoiceIssuerType, batchIdentifier, invoicesCount, totalAmountInvoices,
     		    	    totalAmountOutstanding, totalAmountExecutable, headerInvoiceCurrencyCode,
     		    	    sellerPersonTypeCode, sellerResidenceTypeCode, sellerTaxIdentificationNumber,
@@ -298,7 +310,7 @@ public class Controller {
     		    	    invoiceTotal, totalOutstandingAmount, totalExecutableAmount, 
     		    	    itemDescription, quantity, unitOfMeasure, transactionDate, status);    			
     		}
-    		not.addNotification2(_cuenta, array.length(), _cuenta, 0);
+    		not.addNotification2(_cuenta.toLowerCase(), array.length(), _cuenta, 0);
 			//res = login.login(json.getString("username"), json.getString("password"));
 		} catch (JSONException e) {
 			System.out.println(e);
@@ -313,6 +325,8 @@ public class Controller {
 		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
     }
 	
+	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/invoices", method=RequestMethod.GET)
     public ResponseEntity<String> getInvoices(@RequestHeader Map<String,String> headers){
@@ -328,9 +342,11 @@ public class Controller {
     		return login.throwError2();
     	}
     	
-    	return app.getAllInvoices(login.getCuenta(token));
+    	return app.getAllInvoices(login.getCuenta(token).toLowerCase());
 	}
 	
+	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/invoices-uploaded", method=RequestMethod.POST)
     public ResponseEntity<String> getInvoicesUploaded(@RequestHeader Map<String,String> headers,
@@ -356,9 +372,11 @@ public class Controller {
 			e.printStackTrace();
 		}
     	
-    	return app.getInvoiceUploaded(login.getCuenta(token), array);
+    	return app.getInvoiceUploaded(login.getCuenta(token).toLowerCase(), array);
 	}
 	
+	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/invoices/{id}", method=RequestMethod.GET)
     public ResponseEntity<String> getInvoice(@RequestHeader Map<String,String> headers,
@@ -375,9 +393,10 @@ public class Controller {
     		login.throwError2();
     	}
     	
-    	return app.getInvoice(login.getCuenta(token), id);
+    	return app.getInvoice(login.getCuenta(token).toLowerCase(), id);
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/autocomplete", method=RequestMethod.GET)
     public ResponseEntity<String> getAutocomplete(@RequestHeader Map<String,String> headers){
@@ -393,9 +412,10 @@ public class Controller {
     		return login.throwError2();
     	}
     	
-    	return app.getAutocomplete(login.getCuenta(token));
+    	return app.getAutocomplete(login.getCuenta(token).toLowerCase());
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/discount", method=RequestMethod.POST)
     public ResponseEntity<String> discount(@RequestBody String a,
@@ -426,9 +446,9 @@ public class Controller {
 	    	
 			for(int i=0; i<array.length(); i++) {
 				String o = array.getString(i);
-				String disc = app.discount(blockchain, login.getCuenta(token), o);
+				String disc = app.discount(blockchain, login.getCuenta(token).toLowerCase(), o);
 				if(!disc.contentEquals("")) {
-					not.addNotification3(login.getCuenta(token), disc);
+					not.addNotification3(login.getCuenta(token).toLowerCase(), disc);
 				}
 			}
 		} catch (JSONException e) {
@@ -444,6 +464,7 @@ public class Controller {
    		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/check", method=RequestMethod.POST)
     public ResponseEntity<String> check(@RequestBody String a,
@@ -474,9 +495,9 @@ public class Controller {
 	    	
 			for(int i=0; i<array.length(); i++) {
 				String o = array.getString(i);
-				String disc = app.check(blockchain, login.getCuenta(token), o);
+				String disc = app.check(blockchain, login.getCuenta(token).toLowerCase(), o);
 				if(!disc.contentEquals("")) {
-					not.addNotification3(login.getCuenta(token), disc);
+					not.addNotification3(login.getCuenta(token).toLowerCase(), disc);
 				}
 			}
 		} catch (JSONException e) {
@@ -492,6 +513,7 @@ public class Controller {
    		return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/dashboard", method=RequestMethod.GET)
     public ResponseEntity<String> getDashboard(@RequestHeader Map<String,String> headers){
@@ -506,9 +528,10 @@ public class Controller {
     	if(!login.validateLogin(token)) {
     		return login.throwError2();
     	}
-    	return app.dashboard(login.getCuenta(token));
+    	return app.dashboard(login.getCuenta(token).toLowerCase());
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/notifications", method=RequestMethod.GET)
     public ResponseEntity<String> getNotifications(@RequestHeader Map<String,String> headers){
@@ -524,9 +547,10 @@ public class Controller {
     		return login.throwError2();
     	}
     	
-    	return not.getNotifications(login.getCuenta(token));
+    	return not.getNotifications(login.getCuenta(token).toLowerCase());
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/not-number", method=RequestMethod.GET)
     public ResponseEntity<String> getNumNotifications(@RequestHeader Map<String,String> headers){
@@ -542,9 +566,10 @@ public class Controller {
     		return login.throwError2();
     	}
     	
-    	return not.getNumberNotifications(login.getCuenta(token));
+    	return not.getNumberNotifications(login.getCuenta(token).toLowerCase());
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/readNotif", method=RequestMethod.POST)
     public ResponseEntity<String> markRead(@RequestBody String a,
@@ -575,7 +600,7 @@ public class Controller {
 			e1.printStackTrace();
 		}
     	
-    	not.markRead(login.getCuenta(token), id);
+    	not.markRead(login.getCuenta(token).toLowerCase(), id);
     	
     	JSONObject res = new JSONObject();
     	try {
@@ -586,6 +611,7 @@ public class Controller {
     	return new ResponseEntity<String>(res.toString(), header, HttpStatus.OK);
 	}
 	
+	//POSTGRESQL
 	@CrossOrigin(origins = "*")
     @RequestMapping(path="api-inblock/v1/del-notification", method=RequestMethod.POST)
 	public ResponseEntity<String> delNoti(@RequestBody String a,
@@ -615,7 +641,7 @@ public class Controller {
 			e1.printStackTrace();
 		}
     	
-    	not.remove(login.getCuenta(token), id);
+    	not.remove(login.getCuenta(token).toLowerCase(), id);
     	
     	JSONObject res = new JSONObject();
     	try {

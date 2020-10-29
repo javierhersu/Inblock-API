@@ -1,16 +1,13 @@
 package quorum;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
 
 import org.apache.tomcat.util.bcel.Const;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,20 +16,18 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+
 public class Notification {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	Connection connection = null;
 	Random rand = new Random(); 
+	MongoDatabase database;
 	
-    public Notification() {
-        try {	 
-    		Class.forName(Constants.SQL_DRIVER);
-    	    connection = DriverManager.getConnection(Constants.SQL_URL, Constants.SQL_USER, Constants.SQL_PASSWORD);	    
-    	} catch (SQLException e) {
-    		e.printStackTrace();
-    	}catch (ClassNotFoundException ex) {
-    	    System.out.println("Error al registrar el driver de PostgreSQL: " + ex);
-    	}
+    public Notification(MongoDatabase db) {
+        database = db;
     }
     
     //Notificacion enviada al tener invoices duplicadas
@@ -52,7 +47,7 @@ public class Notification {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-   		insert(connection, _cuenta, json, _id);
+   		insert(_cuenta, json);
     }
     
     //Notificacion enviada al subir una factura nueva
@@ -72,7 +67,7 @@ public class Notification {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-   		insert(connection, _cuenta, json, _id);
+   		insert(_cuenta, json);
     }
     
     //Notificacion descontar una factura ya descontada
@@ -91,7 +86,7 @@ public class Notification {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-   		insert(connection, _cuenta, json, _id);
+   		insert(_cuenta, json);
     }
     
     public void addNotification4(String _cuenta, String _inblockID) {
@@ -109,7 +104,7 @@ public class Notification {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-   		insert(connection, _cuenta, json, _id);
+   		insert(_cuenta, json);
     }
     
     //Notificacion diaria de analysis
@@ -130,11 +125,11 @@ public class Notification {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-   		insert(connection, _cuenta, json, _id);
+   		insert(_cuenta, json);
     }
     
     public ResponseEntity<String> getNotifications(String _cuenta) {
-    	JSONArray array = getDBNotifications(connection, _cuenta);
+    	JSONArray array = getDBNotifications(_cuenta);
     	
     	JSONArray res = new JSONArray();
     	for(int i=array.length()-1; i>=0; i--) {
@@ -153,7 +148,7 @@ public class Notification {
     public ResponseEntity<String> getNumberNotifications(String _cuenta) {
     	JSONObject json = new JSONObject();
     	try {
-			json.put("notifications", getNumNotif(connection, _cuenta));
+			json.put("notifications", getNumNotif(_cuenta));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -163,18 +158,18 @@ public class Notification {
     }
     
     public void markRead(String _cuenta, String _id) {
-    	JSONObject json = getOneNotification(connection, _cuenta, _id);
+    	JSONObject json = getOneNotification(_cuenta, _id);
     	System.out.println(json);
     	try {
 			json.put("read", true);
-			updateRead(connection, json.toString(), _id);
+			updateRead(json.toString(), _id);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
     }
     
     public void remove(String _cuenta, String _id) {
-    	deleteNotification(connection, _cuenta, _id);
+    	deleteNotification(_cuenta, _id);
     }
     
     public String getCollectionName(String _cuenta) {
@@ -196,130 +191,65 @@ public class Notification {
     }
     
     /**************************** DB METHODS ***********************************/
-    public void insert(Connection conn, String account, JSONObject json, String _id) {
-		String SQL_INSERT = "INSERT INTO notifications (id, account, jsonNotif)"
-				+ "VALUES(?,?,?)";
-				
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setString(1, _id);
-			pstmt.setString(2, account);
-
-			PGobject jsonObject = new PGobject();
-			 jsonObject.setType("json");
-			 jsonObject.setValue(json.toString());
-			pstmt.setObject(3, jsonObject);
-			
-			pstmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+    public void insert(String account, JSONObject json) {
+    	
+    	MongoCollection<Document> collection = database.getCollection("not-"+account);
+    	collection.insertOne(Document.parse(json.toString()));
 	}
     
-    public JSONArray getDBNotifications(Connection conn, String account) {
-    	String SQL_SELECT = "SELECT jsonnotif FROM notifications WHERE account='"+account+"'";
-    	Statement st;
+    public JSONArray getDBNotifications(String account) {
+    	
+    	MongoCollection<Document> collection = database.getCollection("not-"+account);
+    	Iterator<Document> it = collection.find().iterator();
 		JSONArray res = new JSONArray();
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("jsonnotif"));
-				JSONObject json2 = null;
-				try {
-					json2 = new JSONObject(json.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				res.put(json2);
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return res;
-    }
-    
-    public int getNumNotif(Connection conn, String account) {
-    	String SQL_SELECT = "SELECT jsonnotif FROM notifications WHERE account='"+account+"'";
-    	Statement st;
-		int res = 0;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("jsonnotif"));
-				JSONObject json2 = null;
-				try {
-					json2 = new JSONObject(json.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				try {
-					if(json2.getBoolean("read") == false)
-					res++;
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return res;
-    }
-    
-    public void updateRead(Connection conn, String jsonString, String id) {
-		String SQL_INSERT = "UPDATE notifications SET jsonnotif=? WHERE id='"+id+"'";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			
-			PGobject jsonObject = new PGobject();
-			 jsonObject.setType("json");
-			 jsonObject.setValue(jsonString);
-			pstmt.setObject(1, jsonObject);
-			
-			pstmt.execute();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+    	while(it.hasNext()) {
+    		Document d = it.next();
+    		res.put(d.toJson());
+    	}
+    	
+		return res;
+    }
+    
+    public int getNumNotif(String account) {
+    	
+    	MongoCollection<Document> collection = database.getCollection("not-"+account);
+		int res = 0;
+		res = (int) collection.count();
+
+		return res;
+    }
+    
+    public void updateRead(String jsonString, String id) {
+
+    	MongoCollection<Document> collection = database.getCollection("notifications");
+    	
+    	
+		Object query = BasicDBObject.parse(jsonString);
+    	BasicDBObject update = new BasicDBObject();
+    	update.append("$set", query);
+    	
+		collection.findOneAndUpdate(Filters.eq("id", id), update);
 	}
     
-    public JSONObject getOneNotification(Connection conn, String account, String id) {
-    	String SQL_SELECT = "SELECT jsonnotif FROM notifications WHERE id='"+id+"'";
-    	Statement st;
+    public JSONObject getOneNotification(String account, String id) {
+
     	JSONObject res = null;
+    	
+    	MongoCollection<Document> collection = database.getCollection("not-"+account);
+    	Document d = collection.find(Filters.eq("id", id)).first();
 		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(SQL_SELECT);	
-			while (rs.next()) {
-				JSONObject json = new JSONObject(rs.getObject("jsonnotif"));
-				try {
-					res = new JSONObject(json.getString("value"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			st.close();
-		} catch (SQLException e) {
+			res = new JSONObject(d.toJson());
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return res;
     }
     
-    public void deleteNotification(Connection conn, String account, String id) {
-    	String SQL_SELECT = "DELETE FROM notifications WHERE id='"+id+"'";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL_SELECT, Statement.RETURN_GENERATED_KEYS);
-						
-			pstmt.execute();
-			pstmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+    public void deleteNotification(String account, String id) {
+    	
+    	MongoCollection<Document> collection = database.getCollection("not-"+account);
+    	collection.findOneAndDelete(Filters.eq("id", id));
 		
     }
 }
